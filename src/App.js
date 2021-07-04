@@ -29,14 +29,14 @@ function App() {
         </Row>
         <Row>
           <Col span={2} offset={11}>
-            {generatedObject.length > 0 && <Button type="link" onClick={() => {
+            {generatedObject.length > 0 && <Button size="large" type="link" onClick={() => {
               saveData(generatedObject, Date.now().toString() + ".txt");
         }}>Download</Button>}
           </Col>
         </Row>
         <Row>
           <Col span={2} offset={11}>
-          {generatedObject.length > 0 && <Button type="primary" onClick={() => {
+          {generatedObject.length > 0 && <Button type="primary" size="large" onClick={() => {
               setShowReport(true);
         }}>Report</Button>}
           </Col>

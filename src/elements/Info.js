@@ -20,7 +20,7 @@ const Info = (props) => {
       </Col>
       <Col span="6">
         <Card>
-          <Statistic title="Alphanumerics" value={props.info.alphanumerics} />
+          <Statistic title="Alphanumerics" value={props.info.alphanumeric} />
         </Card>
       </Col>
     </Row>
