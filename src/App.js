@@ -1,24 +1,53 @@
-import logo from './logo.svg';
+import { Button, Col, Layout, Row } from 'antd';
+import { useState } from 'react';
 import './App.css';
+import Generate from './elements/Generate';
+import Info from './elements/Info';
+import { saveData } from './utils/Utils';
+const { Content } = Layout;
 
 function App() {
+  var [generatedObject, setGeneratedObject] = useState('');
+  var [showReport, setShowReport] = useState(false);
+  var [info, setInfo] = useState({
+    alphabatic: 0,
+    realNumber: 0,
+    integer: 0,
+    alphanumeric: 0,
+  });  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      <Content>
+        <Row>
+          <Col span={2} offset={11}>
+            <Generate onGenerate={(generated, genInfo) => {
+            console.log(generated, genInfo);
+            setGeneratedObject(generated);
+            setInfo(genInfo);
+          }} />
+          </Col>
+        </Row>
+        <Row>
+          <Col span={2} offset={11}>
+            {generatedObject.length > 0 && <Button type="link" onClick={() => {
+              saveData(generatedObject, Date.now().toString() + ".txt");
+        }}>Download</Button>}
+          </Col>
+        </Row>
+        <Row>
+          <Col span={2} offset={11}>
+          {generatedObject.length > 0 && <Button type="primary" onClick={() => {
+              setShowReport(true);
+        }}>Report</Button>}
+          </Col>
+        </Row>
+        <Row>
+          <Col span={24}>
+            {showReport && <Info info={info} />}
+          </Col>
+        </Row>
+      </Content>
+    </Layout>
   );
 }
 
