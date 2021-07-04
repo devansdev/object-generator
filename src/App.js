@@ -19,23 +19,19 @@ function App() {
     <Layout>
       <Content>
         <Row>
-          <Col span={2} offset={11}>
+          <Col span={2} offset={9}>
             <Generate onGenerate={(generated, genInfo) => {
             console.log(generated, genInfo);
             setGeneratedObject(generated);
             setInfo(genInfo);
           }} />
           </Col>
-        </Row>
-        <Row>
-          <Col span={2} offset={11}>
+          <Col span={2}>
             {generatedObject.length > 0 && <Button size="large" type="link" onClick={() => {
               saveData(generatedObject, Date.now().toString() + ".txt");
         }}>Download</Button>}
           </Col>
-        </Row>
-        <Row>
-          <Col span={2} offset={11}>
+          <Col span={2}>
           {generatedObject.length > 0 && <Button type="primary" size="large" onClick={() => {
               setShowReport(true);
         }}>Report</Button>}
